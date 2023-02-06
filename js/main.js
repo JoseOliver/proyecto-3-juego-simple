@@ -1,60 +1,47 @@
 let tablero= new Tablero();
-let jugador1=new Jugador("Jugador 1");
-let jugador2=new Jugador("Jugador 2");
-let turno;
-let jugada= 1;
-let victoria= false;
+let jugador1=new Jugador("Jugador 1","circulo");
+let jugador2=new Jugador("Jugador 2","cruz");
 
 let log= document.querySelector('.log');
+let siguiente= document.querySelector('.siguiente');
+let turno= document.querySelector(".turno")
 
-function leerJugada(){
-    var jugadaActual= jugada;
-    
-    while(Jugada!=jugadaActual){
-        var asignando //
-        //wait click y cuando clique asignar x e y
-        var huecoOrigen= tablero.hueco(x,y);
-        fichaOrigen=huecoOrigen.ficha;
-        while(tablero){}
-        var x;
-        var y;
+let cruz= document.querySelector('#cruz');
+let circulo= document.querySelector('#circulo');
+let vacio= document.querySelector('#vacio');
 
-
-    }
+function proclamarVictoria(ganador){
+    log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
 }
-function ejecutarJugada(){}
-function proclamarVictoria(){}
-function dibujarCambios(){}
-function clickHueco(huecoX,huecoY){
 
-    if(haceFaltaOrigen())
-}
 function play(){
+    let casillaOrigen={x:"",y:""};
+    let casillaDestino={x:"",y:""};
+    let victoria= false;
+    let turno;
+    let jugada= 1;
+    let fase= 1;
+    log="";
+    siguiente.disabled= true;
+
+    dibujarCambios();
+
     log.innerHTML="";
-    log.innerHTML+= "Comienza la partida","</br>";
+    log.innerHTML+= "Comienza la partida","<br>";
     switch(math.round(Math.random())){
         case 0:
             turno= "1";
             jugador1.darTurno();
             log.innerHTML+= "Empieza ",jugador1.nombre;
+            turno.innerHTML= jugador1.nombre;
             break;
         case 1:
             turno= "2";
             jugador2.darTurno();
             log.innerHTML+= "Empieza ",jugador2.nombre;
+            turno.innerHTML= jugador2.nombre;
             break;
         default:
             console.log("E(fatal):error inesperado inicializando el primer turno");
-    };
-    var origenSeleccionado= null;
-    var destinoSeleccionado=null;
-    var haceFaltaOrigen= false;
-    while(!victoria){
-        jugada==1? :cambiarTurno();
-        leerJugada();
-        ejecutarJugada();
-        dibujarCambios();
-        hayVictoria?victoria=true:
     }
-        proclamarVictoria(turno);
 }

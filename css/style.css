@@ -1,0 +1,4 @@
+.siguiente:disabled {
+    opacity: 0.33;
+    pointer-events: none;
+}
