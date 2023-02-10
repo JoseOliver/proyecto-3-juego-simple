@@ -1,3 +1,7 @@
+const recogiendoOrigen=1;
+const recogiendoDestino=2;
+const listo=3;
+
 function cambiarTurno(){  //terminado
     switch(turno){
         case "1":
@@ -40,7 +44,9 @@ function haceFaltaOrigen(){ // terminado
     }
 }
 function leer(x,y){
-    if(fase==2){
+    let origen=haceFaltaOrigen();
+    let ficha=getJugadorJugando.getFicha()
+    if(fase==recogiendoDestino){
         if (tablero.getFichaEn(x,y)==null){
             casillaDestino.x=x;
             casillaDestino.y=y;
@@ -57,6 +63,7 @@ function leer(x,y){
             casillaDestino.y= y;
             fase= 3;
             siguiente.disabled= false;
+            borrar.disabled
         }
         else{
             casillaOrigen.x=x;
@@ -75,8 +82,8 @@ function ejecutar(){
             tablero.cambiarFicha(getJugadorJugando().ficha,casillaOrigen.x,casillaOrigen.y,casillaDestino.x,casillaDestino.y);
             log.innerHTML+= getJugadorJugando().ficha + "de posicion "+ casillaOrigen.x +"-" + casillaOrigen.y+", a posicion "+casillaDestino.x +"-" + casillaDestino.y + "<br>";
         }
-        casillaOrigen={x:"",y:""};
-        casillaDestino= {x:"",y:""};
+        casillaOrigen={x:"",y:"",set:false};
+        casillaDestino= {x:"",y:"", set:false};
     }
     else {
         console.log("E: llamada a ejecutarJugada sin definir las casillas de la jugada");
@@ -107,4 +114,12 @@ function dibujarCambios(){
             }
         }
     }
+}
+function borrar(){
+    fase=1;
+    casillaOrigen={x:"",y:""};
+    casillaDestino={x:"",y:""};
+}
+function proclamarVictoria(ganador){
+    log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
 }

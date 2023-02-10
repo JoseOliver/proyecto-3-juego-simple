@@ -3,26 +3,25 @@ let jugador1=new Jugador("Jugador 1","circulo");
 let jugador2=new Jugador("Jugador 2","cruz");
 
 let log= document.querySelector('.log');
+let turno= document.querySelector(".turno");
+
 let siguiente= document.querySelector('.siguiente');
-let turno= document.querySelector(".turno")
+let borrador= document.querySelector('.borrar');
 
-let cruz= document.querySelector('#cruz');
-let circulo= document.querySelector('#circulo');
-let vacio= document.querySelector('#vacio');
-
-function proclamarVictoria(ganador){
-    log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
-}
+let cruz= '<div id="cruz">x</div>';
+let circulo= '<div id="circulo">o</div>';
+let vacio= '<div id="vacio"> </div>';
 
 function play(){
-    let casillaOrigen={x:"",y:""};
-    let casillaDestino={x:"",y:""};
+    let casillaOrigen={x:"",y:"",set:false};
+    let casillaDestino={x:"",y:"",set:false};
     let victoria= false;
     let turno;
     let jugada= 1;
     let fase= 1;
-    log="";
+    log.innerHTML="";
     siguiente.disabled= true;
+    borrador.disabled=true;
 
     dibujarCambios();
 
