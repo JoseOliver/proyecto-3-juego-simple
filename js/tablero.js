@@ -1,10 +1,12 @@
+const filasTablero = 3;
+const columnasTablero = 3;
 class Tablero{
     constructor(){
         this.fichas= [];
-        for (let fila=0;fila<3;fila++){
+        for (let fila=0;fila<filasTablero;fila++){
             this.fichas[fila]=[];
-            for (let columna=0;columna<3;columna++){
-                this.fichas[fila].push(new Hueco(fila,columna));
+            for (let columna=0;columnasTablero<3;columna++){
+                this.fichas[fila].push(null);
             }
         }
         this.cruces=3;
@@ -28,7 +30,10 @@ class Tablero{
         ){
             fichas[filaDestino][columnaDestino]= fichas[filaOrigen][columnaOrigen];
             fichas[filaOrigen][columnaOrigen]= null;
-        }else{
+        else if(ficha=="cruz" && this.cruces==0 &&
+            this.fichas[filaOrigen][columnaOrigen]=="cruz" &&
+            this.fichas[filaDestino][columnaDestino]== null 
+        )}else{
             console.log("E:ficha ",ficha," no movible de la posicion origen a la posicion destino indicada");
         }
     }

@@ -1,3 +1,26 @@
+body{
+    margin:0;
+    padding:0;
+    
+}
+.tablero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+}
+.row{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:33vh;
+}
+.col{
+    background-color: red;
+    width:3em;
+    height:3em;
+    border:3px solid white;
+}
 .siguiente:disabled {
     opacity: 0.33;
     pointer-events: none;

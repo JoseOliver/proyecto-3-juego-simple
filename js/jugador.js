@@ -5,16 +5,16 @@ class Jugador{
         this.ganadas= 0;
         this.ficha=ficha;
     }
-    get getNombre(){
+    getNombre(){
         return this.nombre;
     }
-    set setNombre(nombre){
+    setNombre(nombre){
         this.nombre= nombre;
     }
-    get getFicha(){
+    getFicha(){
         return this.ficha;
     }
-    set setFicha(ficha){
+    setFicha(ficha){
         this.ficha=ficha;
     }
     darTurno(){
