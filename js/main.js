@@ -1,4 +1,6 @@
-let tablero= new Tablero();
+// let tablero= new Tablero();
+let jugadores= JSON.parse(sessionStorage.getItem("jugadores"));
+console.log(jugadores);
 let jugador1=new Jugador("Jugador 1","circulo");
 let jugador2=new Jugador("Jugador 2","cruz");
 
@@ -27,7 +29,7 @@ function play(){
 
     log.innerHTML="";
     log.innerHTML+= "Comienza la partida","<br>";
-    switch(math.round(Math.random())){
+    switch(math.round(Math.random())){ // numero aleatorio entre el 0 y el 1, redondea al mas cercano
         case 0:
             turno= "1";
             jugador1.darTurno();
