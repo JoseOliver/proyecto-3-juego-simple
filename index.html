@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="css/entry.css">
 </head>
 <body>
-    <div class="jugador1">
-        <img src="" alt="" class="perfil">
-        <input type="text" id="nombre1" class="nombre">
-        <select name="" id="ficha1" class="ficha" onchange="cambiaSeleccion(this)">
-            <option selected="selected" value="circulo">Circulos</option>
-            <option value="cruz">Cruces</option>
-        </select>
+    <div class="jugadores">
+        <div class="jugador espaciado">
+            <img src="assets/j1perfil.png" alt="Jugador 1" class="perfil espaciado">
+            <input type="text" id="nombre1" class="nombre espaciado">
+            <select name="" id="ficha1" class="ficha espaciado" onchange="cambiaSeleccion(this)">
+                <option selected="selected" value="circulo">Circulos</option>
+                <option value="cruz">Cruces</option>
+            </select>
+        </div>
+        <div class="jugador espaciado">
+            <img src="assets/j2perfil.png" alt="Jugador 2" class="perfil espaciado">
+            <input type="text" id="nombre2" class="nombre espaciado">
+            <select name="" id="ficha2" class="ficha espaciado" onchange="cambiaSeleccion(this)">
+                <option value="circulo">Circulos</option>
+                <option selected="selected" value="cruz">Cruces</option>
+            </select>
+        </div>
+        <button class="espaciado" onclick="comenzarPartida()">Jugar</button>
     </div>
-    <div class="jugador2">
-        <img src="" alt="" class="perfil">
-        <input type="text" id="nombre2" class="nombre">
-        <select name="" id="ficha2" class="ficha" onchange="cambiaSeleccion(this)">
-            <option value="circulo">Circulos</option>
-            <option selected="selected" value="cruz">Cruces</option>
-        </select>
-    </div>
-    <button onclick="comenzarPartida()">Jugar</button>
     <script src="js/entry.js"></script>
 </body>
 </html>

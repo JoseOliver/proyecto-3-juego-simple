@@ -1,0 +1,29 @@
+body{
+    margin:0;
+    padding:0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.jugadores{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    width:500px;
+    background-color:burlywood;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.jugador{
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+}
+.espaciado{
+    margin:10px;
+}
+.perfil{
+    width:100%;
+    min-width:100px;
+    grid-row: 1/3;
+}
