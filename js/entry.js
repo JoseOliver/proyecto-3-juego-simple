@@ -1,3 +1,7 @@
+//constantes
+const CIRCULO=1;
+const CRUZ=2;
+//funciones
 const cambiaSeleccion= (elem)=>{
     let fichaElegida= elem.value;
     let opuesto;
@@ -32,6 +36,7 @@ const cambiaSeleccion= (elem)=>{
             console.log("E: error inesperado al cambiar fichas");
     }
 }
+//enviar los jugadores al juego y empezar a jugar
 const comenzarPartida= ()=>{
     let jugador1={
         nombre: document.querySelector("#nombre1").value? document.querySelector("#nombre1").value:"Jugador 1",
