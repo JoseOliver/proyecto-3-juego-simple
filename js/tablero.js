@@ -61,3 +61,4 @@ class Tablero{
         return result;
     }
 }
+console.log("llega a final de tablero");

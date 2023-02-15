@@ -4,6 +4,11 @@ sortearTurnoInicial();
     //inicializando visuales y botonera
 log.innerHTML="";
 log.innerHTML+= "Comienza la partida","<br>";
+j1.children[0].innerHTML=jugadores[Jugador1].nombre;
+j2.children[0].innerHTML=jugadores[Jugador2].nombre;
+switch(jugadores[jugadorJugando]){
+    //estoy aqui
+}
 siguiente.disabled= true; 
 borrador.disabled=true;
 //empezamos la partida

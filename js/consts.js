@@ -7,5 +7,6 @@ const COLUMNAS=3;
 const CIRCULO='circulo';
 const CRUZ='cruz';
 const VACIO=null;
-const Jugador1=1;
-const Jugador2=2;
+const Jugador1=0;
+const Jugador2=1;
+console.log("llega a final de constantes");

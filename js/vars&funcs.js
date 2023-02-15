@@ -7,13 +7,13 @@ let numJugadas= 0;
     //variables de fase inicializadas segun necesidades iniciales del juego
 let casillaOrigen={x:"",y:""};
 let casillaDestino={x:"",y:""};
-let fase= recogiendoDestino;
+let fase= RecogiendoDestino;
 let jugadorJugando;
 let turno;
     //variables visuales de div's
 let log= document.querySelector('.log');
-let j1= document.querySelector('j1');
-let j2= document.querySelector('j2');
+let j1= document.querySelector('.j1');
+let j2= document.querySelector('.j2');
     //variables de interfaz de botonera
 let siguiente= document.querySelector('.siguiente');
 let borrador= document.querySelector('.borrar');
@@ -23,16 +23,16 @@ let circulo= '<div id="circulo">o</div>';
 let vacio= '<div id="vacio"> </div>';
 //funciones
 const sortearTurnoInicial=()=>{  //setea el primer turno a suertes
-    switch(math.round(Math.random())){ //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
+    switch(Math.round(Math.random())){ //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
         case 0:
-            turno= jugadores.jugador1.ficha;
-            log.innerHTML+= "Empieza ",jugadores.jugador1.nombre,"<br>";
+            turno= jugadores[Jugador1].ficha;
+            log.innerHTML+= "Empieza ",jugadores[Jugador1].nombre,"<br>";
             j1.classList+="focus";
             jugadorJugando= Jugador1;
             break;
         case 1:
-            turno= jugadores.jugador2.ficha;
-            log.innerHTML+= "Empieza ",jugadores.jugador2.nombre,"<br>";
+            turno= jugadores[Jugador2].ficha;
+            log.innerHTML+= "Empieza ",jugadores[Jugador2].nombre,"<br>";
             j2.classList+="focus";
             jugadorJugando=Jugador2;
             break;
