@@ -17,6 +17,9 @@ body{
     max-height:200px;
     padding:10px;
 }
+.jugador{
+    border-radius: 7px;
+}
 .row{
     display:flex;
     justify-content:space-around;
@@ -29,6 +32,9 @@ body{
     border:3px solid black;
     border-radius: 7px;
     margin:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .siguiente:disabled {
     opacity: 0.33;
@@ -37,4 +43,7 @@ body{
 .borrar:disabled{
     opacity: 0.33;
     pointer-events: none;
+}
+.focus{
+    background-color: coral;
 }

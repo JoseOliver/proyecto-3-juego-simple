@@ -3,7 +3,7 @@ class Tablero{
         this.fichas= [];
         for (let fila=0;fila<FILAS;fila++){
             this.fichas[fila]=[];
-            for (let columna=0;COLUMNAS<3;columna++){
+            for (let columna=0;columna<COLUMNAS;columna++){
                 this.fichas[fila].push(VACIO);
             }
         }
@@ -19,6 +19,7 @@ class Tablero{
         }else{
             console.log("E(fatal):ficha desconocida");
         }
+        console.log(fila + " "+ columna);
     }
     cambiaFicha(origen,destino,ficha){  //sustituye una ficha de una posicion a otra
         this.fichas[origen.x][origen.y]=VACIO;
@@ -35,12 +36,16 @@ class Tablero{
     }
     getFicha(x,y){  //devuelve la ficha en dicha casilla
         return this.fichas[x][y];
+        
     }
     getFichaEnlazada(indice){  //devuelve la ficha suponiendo que las casillas no se desarrollan en filas y columnas sino unidimensionalmente
         let fila=indice/3;
         let columna=indice%3;
         console.log(indice," ",fila," ",columna);  //falta testear
         return this.getFicha(fila,columna);
+    }
+    hayVictoria(){
+        return false;
     }
     getCirculos(){  //devuelve las casillas en las que hay circulos, en un array unidimensional
         let result=[];
