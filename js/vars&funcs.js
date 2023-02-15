@@ -112,8 +112,24 @@ const ejecutarTurno= ()=>{ //ejecuta el turno con los datos existentes, si proce
         cambiarTurno();
     }
 }
-const getNombreJugador= ()=>{
-//falta esto
+const getJugadorJugando= ()=>{ //recupera el jugador que tiene turno a traves de la ficha que esta jugando
+    switch(turno){
+        case CIRCULO:
+            if(jugadores.jugador1.ficha == CIRCULO){
+                return jugadores.jugador1;
+            }else{
+                return jugadores.jugador2;
+            }
+        case CRUZ:
+            if(jugadores.jugador1.ficha == CRUZ){
+                return jugadores.jugador1;
+            }else{
+                return jugadores.jugador2;
+            }
+        default:
+            console.log("E:Error inesperado obteniendo el jugador que tiene el turno");
+            return false;
+    }
 }
 const dibujarCambios=()=>{ //dibuja los cambios en el tablero visual
     let fichaActual;
@@ -137,8 +153,12 @@ const dibujarCambios=()=>{ //dibuja los cambios en el tablero visual
         }
     }
 }
-function borrar(){ //sin revisar
-    fase=1;
+const borrar= () =>{ //borra el turno para seleccionar nuevamente las fichas origen y destino, si procede
+    if(tablero.haceFaltaOrigen()){
+        fase=RecogiendoOrigen;
+    }else{
+        fase=RecogiendoDestino;
+    }
     casillaOrigen={x:"",y:""};
     casillaDestino={x:"",y:""};
 }
