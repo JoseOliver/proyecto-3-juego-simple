@@ -19,7 +19,6 @@ class Tablero{
         }else{
             console.log("E(fatal):ficha desconocida");
         }
-        console.log(fila + " "+ columna);
     }
     cambiaFicha(origen,destino,ficha){  //sustituye una ficha de una posicion a otra
         this.fichas[origen.x][origen.y]=VACIO;
@@ -66,4 +65,3 @@ class Tablero{
         return result;
     }
 }
-console.log("llega a final de tablero");

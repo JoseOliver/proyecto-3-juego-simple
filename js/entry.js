@@ -1,33 +1,21 @@
+//constantes
+const CIRCULO='circulo';
+const CRUZ='cruz';
 //funciones
 const cambiaSeleccion= (elem)=>{
     let fichaElegida= elem.value;
     let opuesto;
-    switch(elem.id){
-        case "ficha1":
-            opuesto= document.querySelector("#ficha2");
-            switch(fichaElegida){
-                case "circulo":
-                    opuesto.value="cruz";
-                    break;
-                case "cruz":
-                    opuesto.value="circulo";
-                    break;
-                default:
-                    console.log("E: error inesperado al cambiar fichas");
-            }
+    if(elem.id=="ficha1"){
+        opuesto= document.querySelector("#ficha2");
+    }else{
+        opuesto= document.querySelector("#ficha1");
+    }
+    switch(fichaElegida){
+        case CIRCULO:
+            opuesto.value=CRUZ;
             break;
-        case "ficha2":
-            opuesto= document.querySelector("#ficha1");
-            switch(fichaElegida){
-                case "circulo":
-                    opuesto.value="cruz";
-                    break;
-                case "cruz":
-                    opuesto.value="circulo";
-                    break;
-                default:
-                    console.log("E: error inesperado al cambiar fichas");
-            }
+        case CRUZ:
+            opuesto.value=CIRCULO;
             break;
         default:
             console.log("E: error inesperado al cambiar fichas");

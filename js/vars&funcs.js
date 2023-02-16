@@ -1,7 +1,6 @@
 //variables
     //variables de partida inicializadas segun necesidades iniciales del juego
 let tablero = new Tablero;
-console.log(tablero);
 let jugadores= JSON.parse(sessionStorage.getItem("jugadores"));
 let victoria= false;
 let numJugadas= 0;
@@ -12,7 +11,7 @@ let fase= RecogiendoDestino;
 let jugadorJugando;
 let turno;
     //variables visuales de div's
-let log= document.querySelector('#log');
+// let log= document.querySelector('#log');
 let j1= document.querySelector('#j1');
 let j2= document.querySelector('#j2');
     //variables de interfaz de botonera
@@ -27,13 +26,13 @@ const sortearTurnoInicial=()=>{  //setea el primer turno a suertes
     switch(Math.round(Math.random())){ //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
         case 0:
             turno= jugadores[Jugador1].ficha;
-            log.innerHTML+= "Empieza "+jugadores[Jugador1].nombre+"</br>";
+            // log.innerHTML+= "Empieza "+jugadores[Jugador1].nombre+"</br>";
             j1.className+=" focus";
             jugadorJugando= jugadores[Jugador1];
             break;
         case 1:
             turno= jugadores[Jugador2].ficha;
-            log.innerHTML+= "Empieza "+jugadores[Jugador2].nombre+"</br>";
+            // log.innerHTML+= "Empieza "+jugadores[Jugador2].nombre+"</br>";
             j2.className+=" focus";
             jugadorJugando=jugadores[Jugador2];
             break;
@@ -62,7 +61,8 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
         default:
             console.log("E: fallo inesperado en cambio del jugador que esta jugando");
     }
-    log.innerHTML+="Le toca a "+ jugadorJugando.nombre+"<br>";
+    // log.innerHTML="Le toca a "+ jugadorJugando.nombre+"<br>";
+    // log.scrollTop = log.scrollHeight;
     siguiente.disabled= true; 
     borrador.disabled=true;
     if(tablero.haceFaltaOrigen()){
@@ -81,7 +81,8 @@ const clickar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen
             if (turno==ficha){
                 casillaOrigen.x=x;
                 casillaOrigen.y=y;
-                log.innerHTML+="origen seleccionado </br>"
+                // log.innerHTML+="origen seleccionado </br>"
+                // log.scrollTop = log.scrollHeight;
                 borrador.disabled=false;
                 fase=RecogiendoDestino;
             }
@@ -90,7 +91,8 @@ const clickar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen
             if (ficha==VACIO){
                 casillaDestino.x=x;
                 casillaDestino.y=y;
-                log.innerHTML+="destino seleccionado, todo listo </br>";
+                // log.innerHTML+="destino seleccionado, todo listo </br>";
+                // log.scrollTop = log.scrollHeight;
                 borrador.disabled= false;
                 siguiente.disabled= false;
                 fase=Listo;
@@ -166,7 +168,8 @@ const borrar= () =>{ //borra el turno para seleccionar nuevamente las fichas ori
     casillaDestino={x:"",y:""};
     siguiente.disabled=true;
     borrador.disabled=true;
-    log.innerHTML+="movimiento borrado, vuelve a elegir tu jugada </br>"
+    // log.innerHTML+="movimiento borrado</br>"
+    // log.scrollTop = log.scrollHeight;
 }
 const cambiarFoco=()=>{
     
@@ -179,5 +182,6 @@ const cambiarFoco=()=>{
     }
 }
 function proclamarVictoria(ganador){ //sin revisar
-    log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
+    // log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
+    // log.scrollTop = log.scrollHeight;
 }

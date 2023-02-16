@@ -47,3 +47,17 @@ body{
 .focus{
     background-color: coral;
 }
+.central{
+    display:flex;
+    flex-direction: row;
+    gap:5px;
+}
+.boton{
+    width:5em;
+}
+/* .log{
+    height:35vh;
+    overflow:auto;
+    scroll-behavior: smooth;
+    text-align: center;
+} */
