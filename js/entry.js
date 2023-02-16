@@ -1,6 +1,3 @@
-//constantes
-const CIRCULO=1;
-const CRUZ=2;
 //funciones
 const cambiaSeleccion= (elem)=>{
     let fichaElegida= elem.value;

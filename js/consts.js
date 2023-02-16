@@ -9,4 +9,5 @@ const CRUZ='cruz';
 const VACIO='vacio';
 const Jugador1=0;
 const Jugador2=1;
-console.log("llega a final de constantes");
+const HijoNombre=0;
+const HijoFicha=1;

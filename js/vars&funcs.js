@@ -38,7 +38,7 @@ const sortearTurnoInicial=()=>{  //setea el primer turno a suertes
             jugadorJugando=jugadores[Jugador2];
             break;
         default:
-            console.log("E(fatal):error inesperado inicializando el primer turno");
+            console.log("E: fallo inesperado inicializando el primer turno");
     }
 }
 const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variables de fase y setea las variables de interfaz visual 
@@ -50,7 +50,7 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
             turno=CRUZ;
             break;
         default:
-            console.log("E:error inesperado en cambio del turno");
+            console.log("E: fallo inesperado en cambio del turno");
     }
     switch(jugadorJugando.nombre){
         case jugadores[Jugador1].nombre:
@@ -60,7 +60,7 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
             jugadorJugando=jugadores[Jugador1];
             break;
         default:
-            console.log("E:error inesperado en cambio del jugador que esta jugando");
+            console.log("E: fallo inesperado en cambio del jugador que esta jugando");
     }
     log.innerHTML+="Le toca a "+ jugadorJugando.nombre+"<br>";
     siguiente.disabled= true; 
@@ -130,7 +130,7 @@ const getJugadorJugando= ()=>{ //recupera el jugador que tiene turno a traves de
                 return Jugador2;
             }
         default:
-            console.log("E:Error inesperado obteniendo el jugador que tiene el turno");
+            console.log("E: fallo inesperado obteniendo el jugador que tiene el turno");
             return false;
     }
 }
@@ -171,11 +171,10 @@ const borrar= () =>{ //borra el turno para seleccionar nuevamente las fichas ori
 const cambiarFoco=()=>{
     
     if(jugadorJugando === jugadores[Jugador1]){
-        j1.className-=" focus";
+        j1.className="jugador";
         j2.className+=" focus";
-        console.log(j2.className);
     }else{
-        j2.className-=" focus";
+        j2.className="jugador";
         j1.className+=" focus";
     }
 }
