@@ -165,20 +165,14 @@ const cogerFicha=(evento)=>{ //sin revisar
     clickar(fichaOrigen.x,fichaOrigen.y);
     document.onmouseup=soltarFicha;  //cuando suelte el click que suelte la ficha llamando a la funcion
 }
-const tocarFicha=(evento)=>{ //sin revisar
-    let fichaOrigen= {};
-    fichaOrigen.x=evento.target.id.substring(3,4)-1;  //guardo el div de la ficha origen, el id es id="rowXcolY" asi que con los substr recojo el elemento logico
-    fichaOrigen.y=evento.target.id.substring(7,8)-1;
-    clickar(fichaOrigen.x,fichaOrigen.y);
-    document.touchend=soltarFicha;  //cuando suelte el click que suelte la ficha llamando a la funcion
-}
 const soltarFicha=(evento)=>{
     let fichaDestino= {};
     fichaDestino.x=evento.target.id.substring(3,4)-1;
     fichaDestino.y=evento.target.id.substring(7,8)-1;
     clickar(fichaDestino.x,fichaDestino.y);
-    evento.target;
-    document.ontouchend=null;
+    if(tablero.getFicha(fichaDestino.x,fichaDestino.y)!=VACIO){
+        borrar();
+    }
     document.onmouseup=null; // termino normalizando el mouseup a null una vez finalizado el drag,para evitar que me ejecute codigo en cada mouseup 
 }
 function proclamarVictoria(ganador){ //sin revisar
