@@ -7,14 +7,22 @@ body{
     height:100vh;
     flex-direction: column;
     background-color: aliceblue;
+    user-select: none;
 }
 .tablero{
+    position: absolute;
+    left: calc(50vw - 110px); /*50vw es el centro de la pantalla y 110px son los 200/2 del tablero width y los 10 del padding-left */
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color:indianred;
-    max-width:200px;
-    max-height:200px;
+    width:200px;
+    height:200px;
+    padding:10px;
+}
+.tablero-wrap{
+    width:200px;
+    height:200px;
     padding:10px;
 }
 .jugador{
@@ -54,6 +62,22 @@ body{
 }
 .boton{
     width:5em;
+}
+.siguiente{
+
+}
+.draggable{
+    cursor: move;
+    user-select: none;
+}
+.ficha{
+    width:0;
+    height:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    pointer-events:none;
 }
 /* .log{
     height:35vh;

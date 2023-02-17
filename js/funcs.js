@@ -1,26 +1,3 @@
-//variables
-    //variables de partida inicializadas segun necesidades iniciales del juego
-let tablero = new Tablero;
-let jugadores= JSON.parse(sessionStorage.getItem("jugadores"));
-let victoria= false;
-let numJugadas= 0;
-    //variables de fase inicializadas segun necesidades iniciales del juego
-let casillaOrigen={x:"",y:""};
-let casillaDestino={x:"",y:""};
-let fase= RecogiendoDestino;
-let jugadorJugando;
-let turno;
-    //variables visuales de div's
-// let log= document.querySelector('#log');
-let j1= document.querySelector('#j1');
-let j2= document.querySelector('#j2');
-    //variables de interfaz de botonera
-let siguiente= document.querySelector('.siguiente');
-let borrador= document.querySelector('.borrar');
-    //variables de casilla predefinidas
-let cruz= '<div class="cruz">x</div>';
-let circulo= '<div class="circulo">o</div>';
-let vacio= '<div class="vacio"> </div>';
 //funciones
 const sortearTurnoInicial=()=>{  //setea el primer turno a suertes
     switch(Math.round(Math.random())){ //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
@@ -181,8 +158,28 @@ const cambiarFoco=()=>{
         j1.className+=" focus";
     }
 }
-const dragFicha=(evento)=>{ //sin revisar
-if(fase==Listo){}//aqui estoy
+const cogerFicha=(evento)=>{ //sin revisar
+    let fichaOrigen= {};
+    fichaOrigen.x=evento.target.id.substring(3,4)-1;  //guardo el div de la ficha origen, el id es id="rowXcolY" asi que con los substr recojo el elemento logico
+    fichaOrigen.y=evento.target.id.substring(7,8)-1;
+    clickar(fichaOrigen.x,fichaOrigen.y);
+    document.onmouseup=soltarFicha;  //cuando suelte el click que suelte la ficha llamando a la funcion
+}
+const tocarFicha=(evento)=>{ //sin revisar
+    let fichaOrigen= {};
+    fichaOrigen.x=evento.target.id.substring(3,4)-1;  //guardo el div de la ficha origen, el id es id="rowXcolY" asi que con los substr recojo el elemento logico
+    fichaOrigen.y=evento.target.id.substring(7,8)-1;
+    clickar(fichaOrigen.x,fichaOrigen.y);
+    document.touchend=soltarFicha;  //cuando suelte el click que suelte la ficha llamando a la funcion
+}
+const soltarFicha=(evento)=>{
+    let fichaDestino= {};
+    fichaDestino.x=evento.target.id.substring(3,4)-1;
+    fichaDestino.y=evento.target.id.substring(7,8)-1;
+    clickar(fichaDestino.x,fichaDestino.y);
+    evento.target;
+    document.ontouchend=null;
+    document.onmouseup=null; // termino normalizando el mouseup a null una vez finalizado el drag,para evitar que me ejecute codigo en cada mouseup 
 }
 function proclamarVictoria(ganador){ //sin revisar
     // log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."

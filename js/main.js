@@ -1,7 +1,7 @@
 //Ejecucion del codigo principal
     //inicializando visuales y botonera
-// log.innerHTML="";
-// log.innerHTML+= "Comienza la partida"+"</br>";
+//- log.innerHTML="";
+//- log.innerHTML+= "Comienza la partida"+"</br>";
 j1.children[HijoNombre].innerHTML=jugadores[Jugador1].nombre;
 j2.children[HijoNombre].innerHTML=jugadores[Jugador2].nombre;
 j1.children[HijoFicha].innerHTML=jugadores[Jugador1].ficha;
