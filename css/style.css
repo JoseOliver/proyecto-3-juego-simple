@@ -10,17 +10,11 @@ body{
     user-select: none;
 }
 .tablero{
-    position: absolute;
-    left: calc(50vw - 110px); /*50vw es el centro de la pantalla y 110px son los 200/2 del tablero width y los 10 del padding-left */
+    left: calc(50vw - 111px); /*50vw es el centro de la pantalla y 110px son los 200/2 del tablero width y los 10 del padding-left */
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color:indianred;
-    width:200px;
-    height:200px;
-    padding:10px;
-}
-.tablero-wrap{
     width:200px;
     height:200px;
     padding:10px;
@@ -61,7 +55,7 @@ body{
     gap:5px;
 }
 .boton{
-    width:5em;
+    width:10vw;
 }
 .siguiente{
 

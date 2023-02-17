@@ -34,6 +34,9 @@ class Tablero{
         }
     }
     getFicha(x,y){  //devuelve la ficha en dicha casilla
+        if(x==-1 || y==-1){
+            return false;
+        }
         return this.fichas[x][y];
         
     }
