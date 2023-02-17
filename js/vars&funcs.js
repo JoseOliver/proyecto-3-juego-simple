@@ -181,6 +181,9 @@ const cambiarFoco=()=>{
         j1.className+=" focus";
     }
 }
+const dragFicha=(evento)=>{ //sin revisar
+if(fase==Listo){}//aqui estoy
+}
 function proclamarVictoria(ganador){ //sin revisar
     // log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
     // log.scrollTop = log.scrollHeight;
