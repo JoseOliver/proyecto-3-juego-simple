@@ -2,6 +2,7 @@ body{
     margin:0;
     padding:0;
     display: flex;
+    flex-direction: column;
     justify-content:center;
     align-items:center;
     height:100vh;
@@ -11,7 +12,7 @@ body{
     display:flex;
     flex-direction: column;
     align-items:center;
-    width:500px;
+    max-width:500px;
     background-color:burlywood;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     border-radius:10px;
@@ -36,4 +37,7 @@ body{
 .jugar{
     width:100px;
     height:40px;
+}
+.titulo{
+    width:300px;
 }

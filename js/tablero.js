@@ -35,34 +35,47 @@ class Tablero{
     }
     getFicha(x,y){  //devuelve la ficha en dicha casilla
         if(x==-1 || y==-1){
-            return false;
+            return -1;
         }
         return this.fichas[x][y];
         
     }
     getFichaEnlazada(indice){  //devuelve la ficha suponiendo que las casillas no se desarrollan en filas y columnas sino unidimensionalmente
-        let fila=indice/3;
+        let fila=Math.floor(indice/3);
         let columna=indice%3;
-        console.log(indice," ",fila," ",columna);  //falta testear
         return this.getFicha(fila,columna);
     }
-    hayVictoria(){
-        return false;
+    hayVictoria(jugada){
+        let winnerPositions = ["123","456","789","147","258","369","159","357"];
+        let posiciones="";
+        let victoria= false;
+        if(turno==CIRCULO){
+            posiciones= tablero.getCirculos();
+        }else{
+            posiciones= tablero.getCruces();
+        }
+        if(posiciones.length==3){
+            victoria=winnerPositions.find(element=> element==posiciones);
+            if(victoria== undefined){
+                return false;
+            }
+            else {return true;}
+        }
     }
     getCirculos(){  //devuelve las casillas en las que hay circulos, en un array unidimensional
-        let result=[];
-        for(i=0;i<9;i++){
+        let result="";
+        for(let i=0;i<9;i++){
             if(CIRCULO==this.getFichaEnlazada(i)){
-                result.push(i);
+                result+=String(i+1);
             }
         }
         return result;
     }
     getCruces(){  //devuelve las casillas en las que hay cruces, en un array unidimensional
-        let result=[];
-        for(i=0;i<9;i++){
+        let result="";
+        for(let i=0;i<9;i++){
             if(CRUZ==this.getFichaEnlazada(i)){
-                result.push(i);
+                result+=String(i+1);
             }
         }
         return result;

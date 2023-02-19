@@ -1,0 +1,19 @@
+body{
+    display:flex;
+    justify-content: center;
+    height:100vh;
+    align-items: center;
+    flex-direction: column;
+    background-color: lightblue;
+    gap:5px;
+}
+span{
+    text-decoration: black wavy underline;
+    font-size: x-large;
+    text-shadow: red 1px 0 3px;
+}
+button{
+    height:50px;
+    width:100px;
+    border-radius: 50%;
+}

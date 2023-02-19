@@ -1,20 +1,15 @@
 //funciones
 const sortearTurnoInicial=()=>{  //setea el primer turno a suertes
-    switch(Math.round(Math.random())){ //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
-        case 0:
-            turno= jugadores[Jugador1].ficha;
-            // log.innerHTML+= "Empieza "+jugadores[Jugador1].nombre+"</br>";
-            j1.className+=" focus";
-            jugadorJugando= jugadores[Jugador1];
-            break;
-        case 1:
+    let sorteo= Math.round(Math.random()); //numero aleatorio entre el 0 y el 1, redondea al mas cercano, emulando un 50% de probabilidades
+    if(sorteo==0){
+        turno= jugadores[Jugador1].ficha;
+        j1.classList.add("focus");
+        jugadorJugando= jugadores[Jugador1];
+    }
+    else if(sorteo==1){
             turno= jugadores[Jugador2].ficha;
-            // log.innerHTML+= "Empieza "+jugadores[Jugador2].nombre+"</br>";
-            j2.className+=" focus";
+            j2.classList.add("focus");
             jugadorJugando=jugadores[Jugador2];
-            break;
-        default:
-            console.log("E: fallo inesperado inicializando el primer turno");
     }
 }
 const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variables de fase y setea las variables de interfaz visual 
@@ -28,18 +23,8 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
         default:
             console.log("E: fallo inesperado en cambio del turno");
     }
-    switch(jugadorJugando.nombre){
-        case jugadores[Jugador1].nombre:
-            jugadorJugando= jugadores[Jugador2];
-            break;
-        case jugadores[Jugador2].nombre:
-            jugadorJugando=jugadores[Jugador1];
-            break;
-        default:
-            console.log("E: fallo inesperado en cambio del jugador que esta jugando");
-    }
-    // log.innerHTML="Le toca a "+ jugadorJugando.nombre+"<br>";
-    // log.scrollTop = log.scrollHeight;
+    jugadorJugando= getJugadorJugando();
+    cambiarFoco();
     siguiente.disabled= true; 
     borrador.disabled=true;
     if(tablero.haceFaltaOrigen()){
@@ -51,15 +36,13 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
         casillaDestino={x:"",y:""};
     }
 }
-const clickar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen y destino
+const clicar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen y destino
     let ficha= tablero.getFicha(x,y);
     switch(fase){
         case RecogiendoOrigen:
             if (turno==ficha){
                 casillaOrigen.x=x;
                 casillaOrigen.y=y;
-                // log.innerHTML+="origen seleccionado </br>"
-                // log.scrollTop = log.scrollHeight;
                 borrador.disabled=false;
                 fase=RecogiendoDestino;
             }
@@ -68,8 +51,6 @@ const clickar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen
             if (ficha==VACIO){
                 casillaDestino.x=x;
                 casillaDestino.y=y;
-                // log.innerHTML+="destino seleccionado, todo listo </br>";
-                // log.scrollTop = log.scrollHeight;
                 borrador.disabled= false;
                 siguiente.disabled= false;
                 fase=Listo;
@@ -86,31 +67,18 @@ const ejecutarTurno= ()=>{ //ejecuta el turno con los datos existentes, si proce
             tablero.setFicha(casillaDestino.x,casillaDestino.y,turno);
         }
         if(tablero.hayVictoria()){
-            proclamarVictoria(getJugadorJugando().nombre);
+            proclamarVictoria(jugadorJugando);
         }
         dibujarCambios();
-        cambiarFoco();
         cambiarTurno();
         numJugadas++;
     }
 }
 const getJugadorJugando= ()=>{ //recupera el jugador que tiene turno a traves de la ficha que esta jugando
-    switch(turno){
-        case CIRCULO:
-            if(jugadores[Jugador1].ficha == CIRCULO){
-                return Jugador1;
-            }else{
-                return Jugador2;
-            }
-        case CRUZ:
-            if(jugadores[Jugador1].ficha == CRUZ){
-                return Jugador1;
-            }else{
-                return Jugador2;
-            }
-        default:
-            console.log("E: fallo inesperado obteniendo el jugador que tiene el turno");
-            return false;
+    if(turno==CIRCULO && jugadores[Jugador1].ficha == CIRCULO ||turno==CRUZ && jugadores[Jugador1].ficha==CRUZ){
+        return jugadores[Jugador1];
+    }else{
+        return jugadores[Jugador2];
     }
 }
 const dibujarCambios=()=>{ //dibuja los cambios en el tablero visual
@@ -145,37 +113,33 @@ const borrar= () =>{ //borra el turno para seleccionar nuevamente las fichas ori
     casillaDestino={x:"",y:""};
     siguiente.disabled=true;
     borrador.disabled=true;
-    // log.innerHTML+="movimiento borrado</br>"
-    // log.scrollTop = log.scrollHeight;
 }
 const cambiarFoco=()=>{
-    
-    if(jugadorJugando === jugadores[Jugador1]){
-        j1.className="jugador";
-        j2.className+=" focus";
+    if(jugadorJugando.nombre == jugadores[Jugador1].nombre){
+        j2.classList.remove("focus");
+        j1.classList.add("focus");
     }else{
-        j2.className="jugador";
-        j1.className+=" focus";
+        j1.classList.remove("focus");
+        j2.classList.add("focus");
     }
 }
-const cogerFicha=(evento)=>{ //sin revisar
-    let fichaOrigen= {};
-    fichaOrigen.x=evento.target.id.substring(3,4)-1;  //guardo el div de la ficha origen, el id es id="rowXcolY" asi que con los substr recojo el elemento logico
-    fichaOrigen.y=evento.target.id.substring(7,8)-1;
-    clickar(fichaOrigen.x,fichaOrigen.y);
-    document.onmouseup=soltarFicha;  //cuando suelte el click que suelte la ficha llamando a la funcion
+const cogerFicha=(evento)=>{ //se ejecuta cuando se clica una casilla para obtener el origen del drag n drop
+    let origen=[];
+    origen.x=evento.target.id.substring(3,4)-1;  //guardo el div de la ficha origen, el id es id="rowXcolY" asi que con los substr recojo el elemento logico
+    origen.y=evento.target.id.substring(7,8)-1;
+    clicar(origen.x,origen.y);
+    document.onmouseup=soltarFicha;
 }
-const soltarFicha=(evento)=>{
-    let fichaDestino= {};
-    fichaDestino.x=evento.target.id.substring(3,4)-1;
-    fichaDestino.y=evento.target.id.substring(7,8)-1;
-    clickar(fichaDestino.x,fichaDestino.y);
-    if(tablero.getFicha(fichaDestino.x,fichaDestino.y)!=VACIO){
-        borrar();
+const soltarFicha=(evento)=>{ //se ejecuta cuando se termina el drag n drop
+    let destino=[];
+    destino.x=evento.target.id.substring(3,4)-1;  
+    destino.y=evento.target.id.substring(7,8)-1;
+    if(tablero.getFicha(destino.x,destino.y)==VACIO){
+        clicar(destino.x,destino.y);
     }
-    document.onmouseup=null; // termino normalizando el mouseup a null una vez finalizado el drag,para evitar que me ejecute codigo en cada mouseup 
+    document.onmouseup=null;
 }
-function proclamarVictoria(ganador){ //sin revisar
-    // log.innerHTML+= "El ganador es "+ganador.nombre+"!!!"+ "<br> pulsa comenzar para nueva partida."
-    // log.scrollTop = log.scrollHeight;
+const proclamarVictoria=(ganador)=>{ //una vez comprobada la victoria proclama al ganador en la nueva pagina html
+    sessionStorage.setItem("ganador", JSON.stringify(ganador.nombre));
+    window.location.href = "victoria.html";
 }
