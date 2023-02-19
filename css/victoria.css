@@ -4,7 +4,7 @@ body{
     height:100vh;
     align-items: center;
     flex-direction: column;
-    background-color: lightblue;
+    background-color: aliceblue;
     gap:5px;
 }
 span{
