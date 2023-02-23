@@ -84,6 +84,12 @@ body{
     cursor: move;
     user-select: none;
 }
+.volver{
+    height:40px;
+    margin-top:150px;
+    border-radius: 10px;
+    cursor:pointer;
+}
 .ficha{
     width:0;
     height:0;
