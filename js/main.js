@@ -4,8 +4,6 @@ j1.children[HijoNombre].innerHTML=jugadores[Jugador1].nombre;
 j2.children[HijoNombre].innerHTML=jugadores[Jugador2].nombre;
 j1.children[HijoFicha].innerHTML=jugadores[Jugador1].ficha;
 j2.children[HijoFicha].innerHTML=jugadores[Jugador2].ficha;
-siguiente.disabled= true; 
-borrador.disabled=true;
     //inicializando variables restantes
 sortearTurnoInicial(); 
 //empezamos la partida

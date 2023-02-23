@@ -25,8 +25,6 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
     }
     jugadorJugando= getJugadorJugando();
     cambiarFoco();
-    siguiente.disabled= true; 
-    borrador.disabled=true;
     if(tablero.haceFaltaOrigen()){
         fase= RecogiendoOrigen;
         casillaOrigen={x:"",y:""};
@@ -38,12 +36,16 @@ const cambiarTurno=()=>{  //cambia el turno al otro jugador, resetea las variabl
 }
 const clicar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen y destino
     let ficha= tablero.getFicha(x,y);
+    let fichaId;
+    let fichaDiv;
     switch(fase){
         case RecogiendoOrigen:
             if (turno==ficha){
                 casillaOrigen.x=x;
                 casillaOrigen.y=y;
-                borrador.disabled=false;
+                fichaId ="#row"+(x+1)+"col"+(y+1);
+                fichaDiv = document.querySelector(fichaId);
+                fichaDiv.classList.add("selected");
                 fase=RecogiendoDestino;
             }
             break;
@@ -51,9 +53,8 @@ const clicar=(x,y)=>{  //prepara la fase para recoger todos los datos de origen 
             if (ficha==VACIO){
                 casillaDestino.x=x;
                 casillaDestino.y=y;
-                borrador.disabled= false;
-                siguiente.disabled= false;
                 fase=Listo;
+                ejecutarTurno();
             }
             break;
         default: //nothing
@@ -63,6 +64,9 @@ const ejecutarTurno= ()=>{ //ejecuta el turno con los datos existentes, si proce
     if(fase==Listo){
         if(tablero.haceFaltaOrigen()){
             tablero.cambiaFicha(casillaOrigen,casillaDestino,turno);
+            let fichaId="#row"+(casillaOrigen.x+1)+"col"+(casillaOrigen.y+1);
+            let fichaDiv=document.querySelector(fichaId);
+            fichaDiv.classList.remove("selected");
         }else{
             tablero.setFicha(casillaDestino.x,casillaDestino.y,turno);
         }
